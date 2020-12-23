@@ -1,6 +1,5 @@
 import './App.css';
 import Booster from './components/Booster';
-import styled from 'styled-components';
 
 function App() {
   return (
