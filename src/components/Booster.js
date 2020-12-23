@@ -7,8 +7,18 @@ const Container = styled.section`
     overflow: hidden;
     display: flex;
     background-color: white;
-    width: 90%;
+    width: 70%;
     margin: 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+
+    &:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    @media screen and (max-width: 1440px) {
+        flex-direction: column;
+    }
 `;
 
 const InfoSection = styled.section`
@@ -19,8 +29,11 @@ const InfoSection = styled.section`
 `;
 
 const SidePicture = styled.img`
-    max-width: 50%;
-    min-width: 30%;
+    width: 50%;
+
+    @media screen and (max-width: 1440px) {
+        width: 100%;
+    }
 `;
 
 const TitleText = styled.div`
