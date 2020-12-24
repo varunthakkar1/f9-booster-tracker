@@ -7,16 +7,16 @@ const Container = styled.section`
     overflow: hidden;
     display: flex;
     background-color: white;
-    width: 70%;
+    width: 80%;
     margin: 10px 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
 
     &:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
     }
 
-    @media screen and (max-width: 1440px) {
+    @media screen and (max-width: 1450px) {
         flex-direction: column;
     }
 `;
@@ -31,7 +31,7 @@ const InfoSection = styled.section`
 const SidePicture = styled.img`
     width: 50%;
 
-    @media screen and (max-width: 1440px) {
+    @media screen and (max-width: 1450px) {
         width: 100%;
     }
 `;
@@ -51,13 +51,23 @@ const InfoText = styled.div`
 const ActiveStatus = styled.div`
     font-weight: 5;
     font-size: 50px;
-    color: green;
+    color: white;
+    background-color: green;
+    width: min-content;
+    padding: 0rem 1rem;
+    margin-top: 5px;
+    border-radius: 20px;
 `;
 
 const InactiveStatus = styled.div`
     font-weight: 5;
     font-size: 50px;
-    color: red;
+    color: white;
+    background-color: red;
+    width: min-content;
+    padding: 0rem 1rem;
+    margin-top: 5px;
+    border-radius: 20px;
 `;
 
 const Booster = ({ boosterName, firstLaunch, launches, landings, active }) => {
