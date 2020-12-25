@@ -11,13 +11,18 @@ const Container = styled.section`
     margin: 10px 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+    border-radius: 8px;
 
     &:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
     }
 
     @media screen and (max-width: 1450px) {
         flex-direction: column;
+    }
+
+    @media screen and (min-width: 1600px) {
+        width: 70%;
     }
 `;
 
@@ -25,7 +30,10 @@ const InfoSection = styled.section`
     display: flex;
     flex-direction: column;
     text-align: left;
-    margin: 1rem 1.2rem;
+    margin: 0rem 1.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    justify-content: space-evenly;
 `;
 
 const SidePicture = styled.img`
@@ -37,48 +45,56 @@ const SidePicture = styled.img`
 `;
 
 const TitleText = styled.div`
-    font-weight: 10;
+    font-weight: bold;
     font-size: 75px;
     color: black;
+
+    @media screen and (max-width: 715px) {
+        font-size: 50px;
+    }
+`;
+
+const FirstFlightText = styled.div`
+    font-size: 30px;
+    color: #454545;
 `;
 
 const InfoText = styled.div`
-    font-weight: 5;
     font-size: 40px;
     color: black;
 `;
 
 const ActiveStatus = styled.div`
-    font-weight: 5;
+    font-weight: bold;
     font-size: 50px;
     color: white;
     background-color: green;
     width: min-content;
     padding: 0rem 1rem;
     margin-top: 5px;
-    border-radius: 20px;
+    border-radius: 35px;
 `;
 
 const InactiveStatus = styled.div`
-    font-weight: 5;
+    font-weight: bold;
     font-size: 50px;
     color: white;
     background-color: red;
     width: min-content;
     padding: 0rem 1rem;
     margin-top: 5px;
-    border-radius: 20px;
+    border-radius: 35px;
 `;
 
-const Booster = ({ boosterName, firstLaunch, launches, landings, active }) => {
+const Booster = ({ boosterName, firstLaunch, launches, landings, active, imageSrc }) => {
     return (
         <Container>
-            <SidePicture src="//live.staticflickr.com/65535/50740257323_ec8613df86_c.jpg"/>
+            <SidePicture src={imageSrc}/>
             <InfoSection>
                 <TitleText>Booster {boosterName}</TitleText>
-                <InfoText>First flown {firstLaunch}</InfoText>
-                <InfoText>{launches} launches</InfoText>
-                <InfoText>{landings} landings</InfoText>
+                <FirstFlightText>First flown {firstLaunch}</FirstFlightText>
+                <InfoText>{launches} launch{launches == 1 ? "" : "es"}</InfoText>
+                <InfoText>{landings} landing{landings == 1 ? "" : "s"}</InfoText>
                 {active ? <ActiveStatus>Active</ActiveStatus> : <InactiveStatus>Inactive</InactiveStatus>}
             </InfoSection>
         </Container>

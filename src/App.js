@@ -1,13 +1,20 @@
 import './App.css';
 import Booster from './components/Booster';
+import { boosterData } from './data/boosterData'
 
 function App() {
   return (
     <div className="App">
-      <Booster boosterName="Test" firstLaunch="January 1st, 2010" launches="5" landings="5" active>
-      </Booster>
-      <Booster boosterName="Test" firstLaunch="January 2nd, 2010" launches="2" landings="1">
-      </Booster>
+      {boosterData.map((item, index) => (
+        <Booster 
+        boosterName={item.boosterName} 
+        firstLaunch={item.firstLaunch}
+        launches={item.launches}
+        landings={item.landings}
+        imageSrc={item.imageSrc}
+        >
+        </Booster>
+    ))}
     </div>
   );
 }

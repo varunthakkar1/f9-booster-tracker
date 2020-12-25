@@ -1,9 +1,9 @@
 .App {
   text-align: center;
-  background-color: lightcoral;
+  background-image: linear-gradient(to right, #7875ff, #5956f5);
   justify-content: center;
   display: flex;
   align-items: center;
   flex-direction: column;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
