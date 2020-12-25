@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { VscRocket } from 'react-icons/vsc';
-import { RiRecycleLine } from 'react-icons/ri';
+import { RiRecycleLine, RiArrowRightSLine } from 'react-icons/ri';
 
 const Container = styled.section`
     color: white;
@@ -38,11 +38,47 @@ const InfoSection = styled.section`
     justify-content: space-evenly;
 `;
 
-const SidePicture = styled.img`
+const ImageSectionWrapper = styled.div`
     width: 50%;
+    position: relative;
 
     @media screen and (max-width: 1450px) {
         width: 100%;
+    }
+`;
+
+const BoosterImage = styled.img`
+    position: block;
+    width: 100%;
+    height: 100%;
+`;
+
+const Caption = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.25s;
+    display: flex;
+    justify-content: right;
+    align-items: flex-start;
+
+    &:hover {
+        opacity: 1;
+    }
+`;
+
+const CaptionText = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 1rem;
+    font-size: 30px;
+
+    @media screen and (max-width: 715px) {
+        font-size: 23px;
     }
 `;
 
@@ -74,7 +110,7 @@ const FirstFlightText = styled.div`
     }
 `;
 
-const InfoText = styled.div`
+const StatsWrapper = styled.div`
     font-size: 40px;
     color: black;
     display: flex;
@@ -130,11 +166,21 @@ const Landings = styled.div`
 const Booster = ({ boosterName, firstLaunch, launches, landings, active, imageSrc }) => {
     return (
         <Container>
-            <SidePicture src={imageSrc}/>
+            <ImageSectionWrapper>
+                <BoosterImage src={imageSrc}></BoosterImage>
+                <Caption>
+                    <CaptionText>
+                        <IconWrapper>
+                            <RiArrowRightSLine/>
+                        </IconWrapper>
+                        B1046 Landing on Droneship
+                    </CaptionText>
+                </Caption>
+            </ImageSectionWrapper>
             <InfoSection>
                 <TitleText>Booster {boosterName}</TitleText>
                 <FirstFlightText>First flown {firstLaunch}</FirstFlightText>
-                <InfoText>
+                <StatsWrapper>
                     <Launches>
                         <IconWrapper>
                             <VscRocket/>
@@ -147,7 +193,7 @@ const Booster = ({ boosterName, firstLaunch, launches, landings, active, imageSr
                         </IconWrapper>
                         {landings} landing{landings == 1 ? "" : "s"}
                     </Landings>
-                </InfoText>
+                </StatsWrapper>
                 {active ? <ActiveStatus>Active</ActiveStatus> : <InactiveStatus>Inactive</InactiveStatus>}
             </InfoSection>
         </Container>
