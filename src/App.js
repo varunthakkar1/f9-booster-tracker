@@ -12,6 +12,7 @@ function App() {
         launches={item.launches}
         landings={item.landings}
         imageSrc={item.imageSrc}
+        active={item.active}
         >
         </Booster>
     ))}

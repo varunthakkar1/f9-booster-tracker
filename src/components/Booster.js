@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { VscRocket } from 'react-icons/vsc';
+import { RiRecycleLine } from 'react-icons/ri';
 
 const Container = styled.section`
     color: white;
@@ -50,18 +52,41 @@ const TitleText = styled.div`
     color: black;
 
     @media screen and (max-width: 715px) {
-        font-size: 50px;
+        font-size: 42px;
+    }
+
+    @media screen and (min-width: 1450px) {
+        font-size: 75px;
     }
 `;
 
 const FirstFlightText = styled.div`
     font-size: 30px;
-    color: #454545;
+    color: #575757;
+    font-style: italic;
+
+    @media screen and (max-width: 715px) {
+        font-size: 23px;
+    }
+
+    @media screen and (min-width: 1450px) {
+        font-size: 33px;
+    }
 `;
 
 const InfoText = styled.div`
     font-size: 40px;
     color: black;
+    display: flex;
+    flex-direction: row;
+
+    @media screen and (max-width: 715px) {
+        flex-direction: column;
+    }
+
+    @media screen and (min-width: 1450px) {
+        font-size: 43px;
+    }
 `;
 
 const ActiveStatus = styled.div`
@@ -86,6 +111,22 @@ const InactiveStatus = styled.div`
     border-radius: 35px;
 `;
 
+const IconWrapper = styled.div`
+    transform: translate(0%, 9%);
+    margin-right: 5px;
+`;
+
+const Launches = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin-right: 1rem;    
+`;
+
+const Landings = styled.div`
+    display: flex;
+    flex-direction: row;    
+`;
+
 const Booster = ({ boosterName, firstLaunch, launches, landings, active, imageSrc }) => {
     return (
         <Container>
@@ -93,8 +134,20 @@ const Booster = ({ boosterName, firstLaunch, launches, landings, active, imageSr
             <InfoSection>
                 <TitleText>Booster {boosterName}</TitleText>
                 <FirstFlightText>First flown {firstLaunch}</FirstFlightText>
-                <InfoText>{launches} launch{launches == 1 ? "" : "es"}</InfoText>
-                <InfoText>{landings} landing{landings == 1 ? "" : "s"}</InfoText>
+                <InfoText>
+                    <Launches>
+                        <IconWrapper>
+                            <VscRocket/>
+                        </IconWrapper>
+                        {launches} launch{launches == 1 ? "" : "es"}
+                    </Launches>
+                    <Landings>
+                        <IconWrapper>
+                            <RiRecycleLine/>
+                        </IconWrapper>
+                        {landings} landing{landings == 1 ? "" : "s"}
+                    </Landings>
+                </InfoText>
                 {active ? <ActiveStatus>Active</ActiveStatus> : <InactiveStatus>Inactive</InactiveStatus>}
             </InfoSection>
         </Container>

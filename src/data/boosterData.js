@@ -18,6 +18,7 @@ export const boosterData = [
         firstLaunch: "May 11th, 2018",
         launches: 4,
         landings: 3,
-        imageSrc: "//live.staticflickr.com/65535/50740257323_ec8613df86_c.jpg"
+        imageSrc: "//live.staticflickr.com/65535/50740257323_ec8613df86_c.jpg",
+        active: true
     },
 ]
