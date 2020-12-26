@@ -1,22 +1,39 @@
-import './App.css';
 import Booster from './components/Booster';
-import { boosterData } from './data/boosterData'
+import { boosterData } from './data/boosterData';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  text-align: center;
+  background-image: linear-gradient(to right, #7875ff, #5956f5);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Overpass', sans-serif;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 1450px) {
+    flex-direction: row;
+  }
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       {boosterData.map((item, index) => (
         <Booster 
         boosterName={item.boosterName} 
-        firstLaunch={item.firstLaunch}
-        launches={item.launches}
-        landings={item.landings}
+        description={item.description}
         imageSrc={item.imageSrc}
-        active={item.active}
+        imageCaption={item.imageCaption}
         >
         </Booster>
     ))}
-    </div>
+    </Container>
   );
 }
 
