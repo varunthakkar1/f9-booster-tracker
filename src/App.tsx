@@ -1,29 +1,26 @@
-import Booster from './components/Booster';
-import { boosterData } from './data/boosterData';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  text-align: center;
-  background-image: linear-gradient(to right, #7875ff, #5956f5);
-  justify-content: space-evenly;
-  display: flex;
-  align-items: center;
-  font-family: 'Overpass', sans-serif;
-  flex-wrap: wrap;
-`;
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import BoosterPage from "./pages/BoosterPage";
+import BoostersPage from "./pages/BoostersPage";
 
 function App() {
   return (
-    <Container>
-      {boosterData.map((item, index) => (
-        <Booster 
-        boosterName={item.boosterName} 
-        description={item.description}
-        imageSrc={item.imageSrc}
-        imageCaption={item.imageCaption}
-        />
-    ))}
-    </Container>
+    <Router>
+
+      <Link to="/" style={{padding: "1rem 1rem"}}>Home</Link>
+      <Link to="/missions" style={{padding: "1rem 1rem"}}>Missions</Link>
+      <Link to="/boosters">Boosters</Link>  
+
+      <Switch>
+        <Route exact path="/">
+        </Route>
+        <Route exact path="/boosters">
+          <BoostersPage/>
+        </Route>
+        <Route exact path="/boosters/:id">
+          <BoosterPage/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
