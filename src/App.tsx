@@ -21,8 +21,7 @@ function App() {
         description={item.description}
         imageSrc={item.imageSrc}
         imageCaption={item.imageCaption}
-        >
-        </Booster>
+        />
     ))}
     </Container>
   );

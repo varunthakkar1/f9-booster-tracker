@@ -2,7 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
-const Container = styled.section`
+interface BoosterProps {
+    boosterName: string,
+    description: string,
+    imageSrc: string,
+    imageCaption?: string
+};
+
+const Container = styled.div`
     color: white;
     border-radius: 2px;
     overflow: hidden;
@@ -29,7 +36,7 @@ const Container = styled.section`
     }
 `;
 
-const InfoSectionWrapper = styled.section`
+const InfoSectionWrapper = styled.div`
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -156,7 +163,7 @@ const ViewMissionsLink = styled.a`
     }
 `;
 
-const Booster = ({ boosterName, description, imageSrc, imageCaption }) => {
+const Booster = ({ boosterName, description, imageSrc, imageCaption }: BoosterProps) => {
     return (
         <Container>
             <ImageSectionWrapper>
