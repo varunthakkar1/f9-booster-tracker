@@ -3,7 +3,7 @@ export const boosterData = [
         boosterName: "1046",
         description: "First flown on May 11th, 2018, B1046 was launched four times and made three successful droneship landings. It was destroyed during the Crew Dragon In-Flight Abort Test.",
         imageSrc: "//live.staticflickr.com/930/30041972208_59b4d0c268_k.jpg",
-        imageCaption: "B0146 during Merah Putih mission"
+        imageCaption: "Merah Putih mission launch"
     },
     {
         boosterName: "1047",

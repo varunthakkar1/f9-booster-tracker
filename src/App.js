@@ -5,20 +5,11 @@ import styled from 'styled-components';
 const Container = styled.div`
   text-align: center;
   background-image: linear-gradient(to right, #7875ff, #5956f5);
-  justify-content: center;
+  justify-content: space-evenly;
   display: flex;
   align-items: center;
-  flex-direction: column;
   font-family: 'Overpass', sans-serif;
   flex-wrap: wrap;
-
-  @media screen and (max-width: 1450px) {
-    flex-direction: row;
-  }
-
-  @media screen and (max-width: 960px) {
-    flex-direction: column;
-  }
 `;
 
 function App() {

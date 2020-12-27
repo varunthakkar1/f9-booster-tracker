@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { VscRocket } from 'react-icons/vsc';
-import { RiRecycleLine, RiArrowRightSLine } from 'react-icons/ri';
+import { RiArrowRightSLine } from 'react-icons/ri';
 
 const Container = styled.section`
     color: white;
@@ -97,8 +96,7 @@ const CaptionText = styled.div`
 `;
 
 const TitleText = styled.div`
-    font-weight: 600;
-    font-style: bold;
+    font-weight: bolder;
     font-size: 75px;
     color: black;
 
@@ -119,7 +117,6 @@ const Description = styled.div`
     font-size: 22px;
     color: #575757;
     font-style: normal;
-    font-weight: 800;
     width: 100%;
 
     @media screen and (max-width: 715px) {
@@ -145,7 +142,7 @@ const ViewMissionsLink = styled.a`
     display: flex;
     color: #2c51b8;
     font-size: 23px;
-    font-weight: bold;
+    font-weight: normal;
     margin-top: 0.5rem;
     flex-wrap: nowrap;
     cursor: pointer;
