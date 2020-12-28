@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { boosterData } from "../data/boosterData";
 import styled from "styled-components";
 import BoosterCard from "../components/BoosterCard";
@@ -14,10 +14,26 @@ const Container = styled.div`
 `;
 
 const BoostersPage: React.FC = () => {
+  const [boosters, setBoosters] = useState([])
+
+  const getBoosters = async () => {
+    try {
+      const response = await fetch("http://localhost:5001/boosters/");
+      const jsonData = await response.json();
+      setBoosters(jsonData);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  useEffect(() => {
+    getBoosters();
+  }, []);
+
   return (
     <Container>
-      {boosterData.map((item: Booster) => (
-        <BoosterCard booster={item} />
+      {boosters.map((item: Booster, index: number) => (
+        <BoosterCard booster={item} key={index}/>
       ))}
     </Container>
   );

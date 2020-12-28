@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BoosterCard from "../components/BoosterCard";
 import { Booster } from "../model/Booster";
-import { boosterData } from '../data/boosterData';
 import { useParams } from "react-router-dom";
 
 const Container = styled.div`
@@ -19,14 +18,31 @@ interface BoosterRouteParams {
 }
 
 const BoosterPage: React.FC = () => {
+    const [booster, setBooster] = useState([])
     let { id } = useParams<BoosterRouteParams>();
     console.log(id)
 
+  const getBooster = async () => {
+    try {
+      const url = "http://localhost:5001/boosters/" + id;
+      const response = await fetch(url);
+      const jsonData = await response.json();
+      setBooster(jsonData);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  useEffect(() => {
+    getBooster();
+  }, []);
+
+
     return (
         <Container>
-            {boosterData.map((item: Booster) => (
-                parseInt(id) === item.id ? <BoosterCard booster={item}/> : null
-            ))}
+            {booster.map((item: Booster, index: number) => (
+        <BoosterCard booster={item} key={index}/>
+      ))}
         </Container>
     )
 }

@@ -4,7 +4,7 @@ CREATE TABLE boosters(
     booster_id SERIAL PRIMARY KEY,
     booster_name NOT NULL VARCHAR(10),
     description NOT NULL VARCHAR(300),
-    image_source NOT NULL VARCHAR(100),
+    image_src NOT NULL VARCHAR(100),
     image_caption VARCHAR(50)
 )
 

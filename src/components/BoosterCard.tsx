@@ -182,7 +182,7 @@ const BoosterCard = ({ booster }: BoosterCardProps) => {
       <InfoSectionWrapper>
         <TitleText>{booster.boosterName}</TitleText>
         <Description>{booster.description}</Description>
-        <ViewMissionsLink onClick={() => history.push("/boosters/" + booster.id)}>
+        <ViewMissionsLink onClick={() => history.push("/boosters/" + booster.boosterId)}>
           View Missions
           <IconWrapper>
             <RiArrowRightSLine />

@@ -1,5 +1,5 @@
 export interface Booster {
-  id: number;
+  boosterId: number;
   boosterName: string;
   description: string;
   imageSrc: string;

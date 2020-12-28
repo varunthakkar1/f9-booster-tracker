@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require('./db');
+const camelcaseKeys = require('camelcase-keys');
 
 app.use(cors());
 app.use(express.json());
@@ -10,26 +11,47 @@ app.use(express.json());
 app.get("/boosters", async(req, res) => {
     try {
         const allBoosters = await pool.query("SELECT * FROM boosters");
-        res.json(allBoosters.rows);
+        res.json(camelcaseKeys(allBoosters.rows));
     }
     catch (err) {
         console.error(err.message)
     }
 })
 
+app.get("/boosters/:id", async(req, res) => {
+    try {
+        const { id } = req.params;
+        const oneBooster = await pool.query("SELECT * FROM boosters WHERE boosters.booster_id = $1", [id]);
+        res.json(camelcaseKeys(oneBooster.rows));
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
 app.post("/boosters", async(req, res) => {
     try {
-        console.log(req.body);
-        const { boosterId, boosterName, description, imageSrc, imageCaption } = req.body;
+        const {  boosterName, description, imageSrc, imageCaption } = req.body;
         const newBooster = await pool.query(
-            "INSERT INTO boosters(booster_id, booster_name, description, image_source, image_caption) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-            [boosterId, boosterName, description, imageSrc, imageCaption]
+            "INSERT INTO boosters(booster_name, description, image_src, image_caption) VALUES ($1, $2, $3, $4) RETURNING *",
+            [boosterName, description, imageSrc, imageCaption]
         );
-
         res.json(newBooster);
     }
     catch (err) {
         console.log(err.message);
+    }
+})
+
+app.delete("/boosters/:id", async(req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteBooster = await pool.query(
+            "DELETE FROM boosters WHERE boosters.booster_id = $1",
+            [id]
+        );
+        res.json("Booster deleted");
+    } catch (err) {
+        console.error(err.message);
     }
 })
 
