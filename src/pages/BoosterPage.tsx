@@ -20,7 +20,6 @@ interface BoosterRouteParams {
 const BoosterPage: React.FC = () => {
     const [booster, setBooster] = useState([])
     let { id } = useParams<BoosterRouteParams>();
-    console.log(id)
 
   const getBooster = async () => {
     try {

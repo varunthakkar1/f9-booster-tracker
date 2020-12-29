@@ -46,12 +46,25 @@ app.delete("/boosters/:id", async(req, res) => {
     try {
         const { id } = req.params;
         const deleteBooster = await pool.query(
-            "DELETE FROM boosters WHERE boosters.booster_id = $1",
+            "DELETE FROM boosters WHERE boosters.booster_id = $1 RETURNING *",
             [id]
         );
         res.json("Booster deleted");
     } catch (err) {
         console.error(err.message);
+    }
+})
+
+app.get("/boosters/querybyname/:name", async(req, res) => {
+    try {
+        const { name } = req.params;
+        const queriedBoosters = await pool.query(
+            "SELECT * FROM boosters WHERE boosters.booster_name LIKE $1",
+            [name]
+        );
+        res.json(camelcaseKeys(queriedBoosters.rows));
+    } catch (error) {
+        console.error(error.message);
     }
 })
 
