@@ -1,19 +1,17 @@
-import React from "react";
-import styled from "styled-components";
-import { RiArrowRightSLine } from "react-icons/ri";
-import { Booster } from "../model/Booster";
-import { useHistory } from "react-router-dom";
+import React from 'react'
+import styled from 'styled-components'
+import { RiArrowRightSLine } from 'react-icons/ri'
+import { Booster } from '../model/Booster'
+import { useHistory } from 'react-router-dom'
 
 interface BoosterCardProps {
-  booster: Booster;
+  booster: Booster
 }
 
 const Container = styled.div`
   color: white;
-  border-radius: 2px;
   overflow: hidden;
   display: flex;
-  background-color: white;
   width: 76%;
   margin: 10px 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -33,7 +31,7 @@ const Container = styled.div`
     flex-direction: column;
     width: 40%;
   }
-`;
+`
 
 const InfoSectionWrapper = styled.div`
   display: flex;
@@ -47,7 +45,7 @@ const InfoSectionWrapper = styled.div`
   @media screen and (min-width: 1450px) {
     width: 70%;
   }
-`;
+`
 
 const ImageSectionWrapper = styled.div`
   width: 50%;
@@ -56,13 +54,13 @@ const ImageSectionWrapper = styled.div`
   @media screen and (max-width: 1450px) {
     width: 100%;
   }
-`;
+`
 
 const BoosterImage = styled.img`
   position: block;
   vertical-align: bottom;
   width: 100%;
-`;
+`
 
 const Caption = styled.div`
   position: absolute;
@@ -80,11 +78,10 @@ const Caption = styled.div`
   &:hover {
     opacity: 1;
   }
-`;
+`
 
 const CaptionText = styled.div`
   display: flex;
-  flex-direction: row;
   margin: 1rem 1rem;
   font-size: 30px;
 
@@ -99,7 +96,7 @@ const CaptionText = styled.div`
   @media screen and (min-width: 1450px) {
     font-size: 18px;
   }
-`;
+`
 
 const TitleText = styled.div`
   font-weight: bolder;
@@ -110,19 +107,14 @@ const TitleText = styled.div`
     font-size: 42px;
   }
 
-  @media screen and (max-width: 1450px) {
-    font-size: 55px;
+  @media screen and (min-width: 715px) and (max-width: 1450px) {
+    font-size: 60px;
   }
-
-  @media screen and (min-width: 1450px) {
-    font-size: 75px;
-  }
-`;
+`
 
 const Description = styled.div`
   font-size: 22px;
   color: #575757;
-  font-style: normal;
   width: 100%;
 
   @media screen and (max-width: 715px) {
@@ -137,12 +129,12 @@ const Description = styled.div`
     font-size: 23px;
     width: 90%;
   }
-`;
+`
 
 const IconWrapper = styled.div`
   transform: translate(0%, 5%);
   margin-right: 5px;
-`;
+`
 
 const ViewMissionsLink = styled.a`
   display: flex;
@@ -160,11 +152,10 @@ const ViewMissionsLink = styled.a`
   @media screen and (min-width: 1450px) {
     font-size: 29px;
   }
-`;
+`
 
 const BoosterCard = ({ booster }: BoosterCardProps) => {
-
-  let history = useHistory();
+  let history = useHistory()
 
   return (
     <Container>
@@ -182,7 +173,9 @@ const BoosterCard = ({ booster }: BoosterCardProps) => {
       <InfoSectionWrapper>
         <TitleText>{booster.boosterName}</TitleText>
         <Description>{booster.description}</Description>
-        <ViewMissionsLink onClick={() => history.push("/boosters/" + booster.boosterId)}>
+        <ViewMissionsLink
+          onClick={() => history.push('/boosters/' + booster.boosterId)}
+        >
           View Missions
           <IconWrapper>
             <RiArrowRightSLine />
@@ -190,7 +183,7 @@ const BoosterCard = ({ booster }: BoosterCardProps) => {
         </ViewMissionsLink>
       </InfoSectionWrapper>
     </Container>
-  );
-};
+  )
+}
 
-export default BoosterCard;
+export default BoosterCard
