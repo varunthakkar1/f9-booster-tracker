@@ -10,17 +10,24 @@ app.use(express.json())
 // ROUTES
 app.get('/boosters', async (req, res) => {
   try {
-    const parameters = req.query
     var query = 'SELECT * FROM boosters'
-    parameters.name === `''` || parameters.name == undefined
-      ? ''
-      : (query = query + ` WHERE boosters.booster_name LIKE ${parameters.name}`)
     const allBoosters = await pool.query(query)
     res.json(camelcaseKeys(allBoosters.rows))
   } catch (err) {
     console.error(err.message)
   }
 })
+
+app.get('/boosters/searchbyname', async (req, res) => {
+    try {
+      const name = req.query.name;
+      var query = `SELECT * FROM boosters WHERE boosters.booster_name LIKE ${name}`;
+      const allBoosters = await pool.query(query)
+      res.json(camelcaseKeys(allBoosters.rows))
+    } catch (err) {
+      console.error(err.message)
+    }
+  })
 
 app.get('/boosters/:id', async (req, res) => {
   try {

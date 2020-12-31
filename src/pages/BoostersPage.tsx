@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { boosterData } from '../data/boosterData'
 import styled from 'styled-components'
 import BoosterCard from '../components/BoosterCard'
 import { Booster } from '../model/Booster'
@@ -71,10 +70,10 @@ const BoostersPage: React.FC = () => {
     }
   }
 
-  const getBoostersQueryByName = async () => {
+  const getBoostersByName = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5001/boosters?name='${searchBarInput}'`
+        `http://localhost:5001/boosters/searchbyname?name='${searchBarInput}'`
       )
       const jsonData = await response.json()
       setBoosters(jsonData)
@@ -98,7 +97,7 @@ const BoostersPage: React.FC = () => {
         <TitleText>Boosters</TitleText>
       </TitleCard>
       <SearchBar
-        onSubmit={getBoostersQueryByName}
+        onSubmit={getBoostersByName}
         onChange={handleChange}
         inputValue={searchBarInput}
         label="Search by booster name"
