@@ -1,14 +1,15 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const pool = require('./db')
+const pool = require('../database/db')
 const camelcaseKeys = require('camelcase-keys')
 
 app.use(cors())
 app.use(express.json())
 
-// ROUTES
-app.get('/boosters', async (req, res) => {
+// GET ROUTES
+// get all
+app.get('/', async (req, res) => {
   try {
     var query = 'SELECT * FROM boosters'
     const allBoosters = await pool.query(query)
@@ -18,18 +19,8 @@ app.get('/boosters', async (req, res) => {
   }
 })
 
-app.get('/boosters/searchbyname', async (req, res) => {
-    try {
-      const name = req.query.name;
-      var query = `SELECT * FROM boosters WHERE boosters.booster_name LIKE ${name}`;
-      const allBoosters = await pool.query(query)
-      res.json(camelcaseKeys(allBoosters.rows))
-    } catch (err) {
-      console.error(err.message)
-    }
-  })
-
-app.get('/boosters/:id', async (req, res) => {
+// get one
+app.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const oneBooster = await pool.query(
@@ -42,7 +33,20 @@ app.get('/boosters/:id', async (req, res) => {
   }
 })
 
-app.post('/boosters', async (req, res) => {
+// get one by name
+app.get('/find/:name', async (req, res) => {
+  try {
+    const { name } = req.params
+    var query = `SELECT * FROM boosters WHERE boosters.booster_name LIKE $1`
+    const allBoosters = await pool.query(query, [name])
+    res.json(camelcaseKeys(allBoosters.rows))
+  } catch (err) {
+    console.error(err.message)
+  }
+})
+
+// POST ROUTE
+app.post('/', async (req, res) => {
   try {
     const { boosterName, description, imageSrc, imageCaption } = req.body
     const newBooster = await pool.query(
@@ -51,11 +55,12 @@ app.post('/boosters', async (req, res) => {
     )
     res.json(newBooster)
   } catch (err) {
-    console.log(err.message)
+    console.error(err.message)
   }
 })
 
-app.delete('/boosters/:id', async (req, res) => {
+// DELETE ROUTE
+app.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const deleteBooster = await pool.query(
@@ -68,6 +73,19 @@ app.delete('/boosters/:id', async (req, res) => {
   }
 })
 
-app.listen(5001, () => {
-  console.log('Server starting on port 5001')
+// PUT ROUTE
+app.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const { boosterName, decription, imageSrc, imageCaption } = req.body
+    const updatedBooster = await pool.query(
+      'UPDATE boosters SET booster_name = $1, description = $2, image_src = $3, image_caption = $4 WHERE booster_id = $5',
+      [boosterName, decription, imageSrc, imageCaption, id]
+    )
+    res.json(camelcaseKeys(updatedBooster))
+  } catch (error) {
+    console.error(error.message)
+  }
 })
+
+module.exports = app

@@ -73,7 +73,7 @@ const BoostersPage: React.FC = () => {
   const getBoostersByName = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5001/boosters/searchbyname?name='${searchBarInput}'`
+        `http://localhost:5001/boosters/find/'${searchBarInput}'`
       )
       const jsonData = await response.json()
       setBoosters(jsonData)
