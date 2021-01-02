@@ -11,7 +11,7 @@ app.use(express.json())
 // get all
 app.get('/', async (req, res) => {
   try {
-    var query = 'SELECT * FROM boosters'
+    var query = 'SELECT * FROM missions';
     const allBoosters = await pool.query(query)
     res.json(camelcaseKeys(allBoosters.rows))
   } catch (err) {
@@ -24,7 +24,7 @@ app.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const oneBooster = await pool.query(
-      'SELECT * FROM boosters WHERE boosters.booster_id = $1',
+      'SELECT * FROM missions WHERE mission_id = $1',
       [id]
     )
     res.json(camelcaseKeys(oneBooster.rows))
@@ -37,7 +37,7 @@ app.get('/:id', async (req, res) => {
 app.get('/find/:name', async (req, res) => {
   try {
     const { name } = req.params
-    var query = `SELECT * FROM boosters WHERE boosters.booster_name LIKE $1`
+    var query = `SELECT * FROM missions WHERE mission_name LIKE $1`;
     const allBoosters = await pool.query(query, [name])
     res.json(camelcaseKeys(allBoosters.rows))
   } catch (err) {
@@ -45,13 +45,26 @@ app.get('/find/:name', async (req, res) => {
   }
 })
 
+// get all by booster id
+app.get('/findbybooster/:boosterid', async (req, res) => {
+    try {
+      const { boosterId } = req.params
+      var query = `SELECT * FROM missions WHERE booster_id = $1`;
+      const allBoosters = await pool.query(query, [boosterId])
+      res.json(camelcaseKeys(allBoosters.rows))
+    } catch (err) {
+      console.error(err.message)
+    }
+  })
+
 // POST ROUTE
 app.post('/', async (req, res) => {
   try {
-    const { boosterName, description, imageSrc, imageCaption } = req.body
+    const { missionName, launchDate, missionStatus, landingStatus, missionPatchSrc, boosterId } = req.body
     const newBooster = await pool.query(
-      'INSERT INTO boosters(booster_name, description, image_src, image_caption) VALUES ($1, $2, $3, $4) RETURNING *',
-      [boosterName, description, imageSrc, imageCaption]
+      'INSERT INTO missions(mission_name, launch_date, mission_status, landing_status, mission_patch_src, booster_id)' 
+      + ' VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+      [missionName, launchDate, missionStatus, landingStatus, missionPatchSrc, boosterId]
     )
     res.json(newBooster)
   } catch (err) {
@@ -64,10 +77,10 @@ app.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const deleteBooster = await pool.query(
-      'DELETE FROM boosters WHERE boosters.booster_id = $1 RETURNING *',
+      'DELETE FROM missions WHERE mission_id = $1 RETURNING *',
       [id]
     )
-    res.json('Booster deleted')
+    res.json('Mission deleted')
   } catch (err) {
     console.error(err.message)
   }
@@ -77,10 +90,10 @@ app.delete('/:id', async (req, res) => {
 app.put('/:id', async (req, res) => {
   try {
     const { id } = req.params
-    const { boosterName, decription, imageSrc, imageCaption } = req.body
+    const { missionName, launchDate, missionStatus, landingStatus, missionPatchSrc } = req.body
     const updatedBooster = await pool.query(
-      'UPDATE boosters SET booster_name = $1, description = $2, image_src = $3, image_caption = $4 WHERE booster_id = $5 RETURNING *',
-      [boosterName, decription, imageSrc, imageCaption, id]
+      'UPDATE missions SET mission_name = $1, launch_date = $2, mission_status = $3, landing_status = $4, mission_patch_src = $5 WHERE mission_id = $6 RETURNING *',
+      [missionName, launchDate, missionStatus, landingStatus, missionPatchSrc, id]
     )
     res.json(camelcaseKeys(updatedBooster))
   } catch (error) {

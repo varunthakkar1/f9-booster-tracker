@@ -15,6 +15,7 @@ CREATE TABLE missions(
     launch_date NOT NULL DATE,
     landing_status NOT NULL VARCHAR(40),
     mission_status NOT NULL VARCHAR(40),
+    mission_patch_src NOT NULL VARCHAR(100),
     booster_id NOT NULL INTEGER,
 
     CONSTRAINT missions_boosters_fk
