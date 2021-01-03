@@ -17,13 +17,13 @@ function App() {
       <Switch>
         <Route exact path="/"></Route>
         <Route exact path="/boosters">
-          <BoostersPage/>
+          <BoostersPage />
         </Route>
         <Route exact path="/boosters/:id">
-          <BoosterPage/>
+          <BoosterPage />
         </Route>
         <Route exact path="/missions">
-          <MissionsPage/>
+          <MissionsPage />
         </Route>
       </Switch>
     </Router>
