@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import BoosterPage from './pages/BoosterPage'
 import BoostersPage from './pages/BoostersPage'
+import MissionsPage from './pages/MissionsPage'
 
 function App() {
   return (
@@ -16,10 +17,13 @@ function App() {
       <Switch>
         <Route exact path="/"></Route>
         <Route exact path="/boosters">
-          <BoostersPage />
+          <BoostersPage/>
         </Route>
         <Route exact path="/boosters/:id">
-          <BoosterPage />
+          <BoosterPage/>
+        </Route>
+        <Route exact path="/missions">
+          <MissionsPage/>
         </Route>
       </Switch>
     </Router>

@@ -155,7 +155,7 @@ const ViewMissionsLink = styled.a`
 `
 
 const BoosterCard = ({ booster }: BoosterCardProps) => {
-  let history = useHistory()
+  let history = useHistory();
 
   return (
     <Container>

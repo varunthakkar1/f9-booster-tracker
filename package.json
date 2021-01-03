@@ -9,6 +9,7 @@
     "camelcase-keys": "^6.2.2",
     "cors": "^2.8.5",
     "express-serializer": "^1.0.1",
+    "moment": "^2.29.1",
     "pg": "^8.5.1",
     "postgresql": "0.0.1",
     "react": "^17.0.1",

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import BoosterCard from '../components/BoosterCard'
-import { Booster } from '../model/Booster'
-import SearchBar from '../components/SearchBar'
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import BoosterCard from '../components/BoosterCard';
+import { Booster } from '../model/Booster';
+import SearchBar from '../components/SearchBar';
 
 const Container = styled.div`
   font-family: 'Overpass', sans-serif;
@@ -12,7 +12,7 @@ const Container = styled.div`
   flex-direction: column;
   margin: none;
   padding: none;
-`
+`;
 
 const BoostersListWrapper = styled.div`
   flex-wrap: wrap;
@@ -22,7 +22,7 @@ const BoostersListWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-`
+`;
 
 const TitleCard = styled.div`
   display: flex;
@@ -38,58 +38,58 @@ const TitleCard = styled.div`
   @media screen and (min-width: 1650px) {
     background-size: 1920px 1440px;
     background-position: 0px 0px;
-  }
+  };
 
   @media screen and (min-width: 1440px) and (max-width: 1650px) {
     background-size: 1920px 1440px;
     background-position: -250px -150px;
-  }
+  };
 
   @media screen and (max-width: 715px) {
     background-position: -200px 0px;
-  }
-`
+  };
+`;
 
 const TitleText = styled.div`
   font-size: 120px;
   font-weight: bolder;
   color: white;
-`
+`;
 
 const BoostersPage: React.FC = () => {
-  const [boosters, setBoosters] = useState([])
-  const [searchBarInput, setSearchBarInput] = useState('')
+  const [boosters, setBoosters] = useState([]);
+  const [searchBarInput, setSearchBarInput] = useState('');
 
   const getBoosters = async () => {
     try {
-      const response = await fetch('http://localhost:5001/boosters')
-      const jsonData = await response.json()
-      setBoosters(jsonData)
+      const response = await fetch('http://localhost:5001/boosters');
+      const jsonData = await response.json();
+      setBoosters(jsonData);
     } catch (error) {
-      console.error(error.message)
+      console.error(error.message);
     }
-  }
+  };
 
   const getBoostersByName = async () => {
     try {
       const response = await fetch(
         `http://localhost:5001/boosters/find/'${searchBarInput}'`
-      )
-      const jsonData = await response.json()
-      setBoosters(jsonData)
+      );
+      const jsonData = await response.json();
+      setBoosters(jsonData);
     } catch (error) {
-      console.error(error.message)
+      console.error(error.message);
     }
-  }
+  };
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    setSearchBarInput(e.currentTarget.value)
-  }
+    e.preventDefault();
+    setSearchBarInput(e.currentTarget.value);
+  };
 
   useEffect(() => {
-    getBoosters()
-  }, [])
+    getBoosters();
+  }, []);
 
   return (
     <Container>
@@ -109,6 +109,6 @@ const BoostersPage: React.FC = () => {
       </BoostersListWrapper>
     </Container>
   )
-}
+};
 
-export default BoostersPage
+export default BoostersPage;
