@@ -46,12 +46,13 @@ app.get('/find/:name', async (req, res) => {
 })
 
 // get all by booster id
-app.get('/findbybooster/:boosterid', async (req, res) => {
+app.get('/findbybooster/:id', async (req, res) => {
     try {
-      const { boosterId } = req.params
-      var query = `SELECT * FROM missions WHERE booster_id = $1`;
-      const allBoosters = await pool.query(query, [boosterId])
-      res.json(camelcaseKeys(allBoosters.rows))
+      const { id } = req.params
+      console.log(req.params);
+      var query = 'SELECT * FROM missions WHERE booster_id = $1';
+      const allMissions = await pool.query(query, [id]);
+      res.json(camelcaseKeys(allMissions.rows));
     } catch (err) {
       console.error(err.message)
     }

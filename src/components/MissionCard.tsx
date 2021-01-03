@@ -30,7 +30,7 @@ const MissionPatch = styled.img`
     display: flex;
     min-width: 65%;
     max-width: 85%;
-    max-height: 350px;
+    max-height: 320px;
     margin: 1rem;
 `;
 
@@ -38,14 +38,13 @@ const TitleText = styled.div`
     display: flex;
     color: black;
     font-size: 40px;
-    margin-left: 0.5rem;
 `;
 
 const InfoText = styled.div`
     display: flex;
     font-size: 20px;
     color: #575757;
-    margin-left: 0.5rem;
+    margin-bottom: 0.2rem;
 `;
 
 const ViewBoosterLink = styled.div`
@@ -53,7 +52,7 @@ const ViewBoosterLink = styled.div`
     color: #2c51b8;
     font-size: 23px;
     font-weight: normal;
-    margin: 0.5rem;
+    margin-bottom: 0.5rem;
     flex-wrap: nowrap;
     cursor: pointer;
 `;
@@ -66,7 +65,7 @@ const IconWrapper = styled.div`
 const InfoSectionWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: center;
     width: 90%;
 `;
 
