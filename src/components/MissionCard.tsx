@@ -60,7 +60,6 @@ const ViewBoosterLink = styled.div`
 
 const IconWrapper = styled.div`
   transform: translate(0%, 5%);
-  margin-right: 5px;
 `
 
 const InfoSectionWrapper = styled.div`

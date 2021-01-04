@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import BoosterCard from '../components/BoosterCard'
-import { Booster } from '../model/Booster'
-import { useParams } from 'react-router-dom'
-import { Mission } from '../model/Mission'
-import MissionCard from '../components/MissionCard'
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import BoosterCard from '../components/BoosterCard';
+import { Booster } from '../model/Booster';
+import { useParams } from 'react-router-dom';
+import MissionCarousel from '../components/MissionCarousel';
 
 const Container = styled.div`
   text-align: center;
-  justify-content: space-evenly;
   display: flex;
-  align-items: center;
   font-family: 'Overpass', sans-serif;
   flex-wrap: wrap;
 `
@@ -56,9 +53,7 @@ const BoosterPage: React.FC = () => {
       {booster.map((item: Booster, index: number) => (
         <BoosterCard booster={item} key={index} />
       ))}
-      {missions.map((mission: Mission, index: number) => (
-        <MissionCard mission={mission} key={index} />
-      ))}
+      <MissionCarousel items={missions}/>
     </Container>
   )
 }
