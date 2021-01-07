@@ -1,15 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import BoosterCard from '../components/BoosterCard';
-import { Booster } from '../model/Booster';
-import { useParams } from 'react-router-dom';
-import MissionCarousel from '../components/MissionCarousel';
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { Booster } from '../model/Booster'
+import { useParams } from 'react-router-dom'
+import MissionCard from '../components/MissionCard'
+import { Mission } from '../model/Mission'
+import Button from '../components/Button'
 
 const Container = styled.div`
   text-align: center;
+  justify-content: center;
   display: flex;
   font-family: 'Overpass', sans-serif;
   flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+`
+
+const BoosterTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 100px;
+
+  @media screen and (min-width: 1440px) {
+    font-size: 200px;
+  }
+`
+
+const ButtonGroup = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 80%;
+  margin-bottom: 2rem;
+
+  @media screen and (max-width: 1010px) {
+    flex-direction: column;
+  }
+`
+
+const MissionsList = styled.div`
+  text-align: center;
+  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
 `
 
 interface BoosterRouteParams {
@@ -17,8 +53,8 @@ interface BoosterRouteParams {
 }
 
 const BoosterPage: React.FC = () => {
-  const [booster, setBooster] = useState([])
-  const [missions, setMissions] = useState([])
+  const [booster, setBooster] = useState<Booster[]>([])
+  const [missions, setMissions] = useState<Mission[]>([])
   let { id } = useParams<BoosterRouteParams>()
 
   const getBooster = async () => {
@@ -50,10 +86,17 @@ const BoosterPage: React.FC = () => {
 
   return (
     <Container>
-      {booster.map((item: Booster, index: number) => (
-        <BoosterCard booster={item} key={index} />
-      ))}
-      <MissionCarousel items={missions}/>
+      <BoosterTitle>Booster {booster[0].boosterName}</BoosterTitle>
+      <ButtonGroup>
+        <Button type="add" text="Mission" />
+        <Button type="edit" text="Booster" />
+        <Button type="delete" text="Booster" />
+      </ButtonGroup>
+      <MissionsList>
+        {missions.map((item: Mission, index: number) => (
+          <MissionCard mission={item} key={index} />
+        ))}
+      </MissionsList>
     </Container>
   )
 }

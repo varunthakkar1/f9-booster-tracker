@@ -17,7 +17,7 @@ const Container = styled.div`
 interface MissionsPageProps {}
 
 const MissionsPage: React.FC<MissionsPageProps> = () => {
-  const [missions, setMissions] = useState([])
+  const [missions, setMissions] = useState<Mission[]>([])
 
   const getMissions = async () => {
     try {

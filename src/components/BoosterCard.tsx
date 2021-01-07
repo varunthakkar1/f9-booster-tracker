@@ -62,7 +62,7 @@ const BoosterImage = styled.img`
   width: 100%;
 `
 
-const Caption = styled.div`
+const CaptionWrapper = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -112,7 +112,7 @@ const TitleText = styled.div`
   }
 `
 
-const Description = styled.div`
+const DescriptionText = styled.div`
   font-size: 22px;
   color: #575757;
   width: 100%;
@@ -142,8 +142,9 @@ const ViewMissionsLink = styled.a`
   font-size: 23px;
   font-weight: normal;
   margin-top: 0.5rem;
-  flex-wrap: nowrap;
   cursor: pointer;
+  width: min-content;
+  white-space: nowrap;
 
   @media screen and (min-width: 715px) and (max-width: 1450px) {
     font-size: 26px;
@@ -161,18 +162,18 @@ const BoosterCard = ({ booster }: BoosterCardProps) => {
     <Container>
       <ImageSectionWrapper>
         <BoosterImage src={booster.imageSrc}></BoosterImage>
-        <Caption>
+        <CaptionWrapper>
           <CaptionText>
             <IconWrapper>
               <RiArrowRightSLine />
             </IconWrapper>
             {booster.imageCaption}
           </CaptionText>
-        </Caption>
+        </CaptionWrapper>
       </ImageSectionWrapper>
       <InfoSectionWrapper>
         <TitleText>{booster.boosterName}</TitleText>
-        <Description>{booster.description}</Description>
+        <DescriptionText>{booster.description}</DescriptionText>
         <ViewMissionsLink
           onClick={() => history.push('/boosters/' + booster.boosterId)}
         >
