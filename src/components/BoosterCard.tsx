@@ -136,10 +136,10 @@ const IconWrapper = styled.div`
   margin-right: 5px;
 `
 
-const ViewMissionsLink = styled.a`
+const MoreLink = styled.a`
   display: flex;
   color: #2c51b8;
-  font-size: 23px;
+  font-size: 26px;
   font-weight: normal;
   margin-top: 0.5rem;
   cursor: pointer;
@@ -147,11 +147,11 @@ const ViewMissionsLink = styled.a`
   white-space: nowrap;
 
   @media screen and (min-width: 715px) and (max-width: 1450px) {
-    font-size: 26px;
+    font-size: 29px;
   }
 
   @media screen and (min-width: 1450px) {
-    font-size: 29px;
+    font-size: 32px;
   }
 `
 
@@ -174,14 +174,14 @@ const BoosterCard = ({ booster }: BoosterCardProps) => {
       <InfoSectionWrapper>
         <TitleText>{booster.boosterName}</TitleText>
         <DescriptionText>{booster.description}</DescriptionText>
-        <ViewMissionsLink
+        <MoreLink
           onClick={() => history.push('/boosters/' + booster.boosterId)}
         >
-          View Missions
+          More
           <IconWrapper>
             <RiArrowRightSLine />
           </IconWrapper>
-        </ViewMissionsLink>
+        </MoreLink>
       </InfoSectionWrapper>
     </Container>
   )

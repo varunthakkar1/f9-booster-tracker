@@ -48,7 +48,7 @@ const InfoText = styled.div`
   margin-bottom: 0.2rem;
 `
 
-const ViewBoosterLink = styled.div`
+const MoreLink = styled.div`
   display: flex;
   color: #2c51b8;
   font-size: 23px;
@@ -80,14 +80,14 @@ const MissionCard: React.FC<MissionCardProps> = ({ mission }) => {
         <InfoText>{moment(mission.launchDate).format('LL')}</InfoText>
         <InfoText>{mission.missionStatus}</InfoText>
         <InfoText>{mission.landingStatus}</InfoText>
-        <ViewBoosterLink
+        <MoreLink
           onClick={() => history.push('/boosters/' + mission.boosterId)}
         >
-          View Booster
+          More
           <IconWrapper>
             <RiArrowRightSLine />
           </IconWrapper>
-        </ViewBoosterLink>
+        </MoreLink>
       </InfoSectionWrapper>
     </Container>
   )
