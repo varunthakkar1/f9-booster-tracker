@@ -3,5 +3,5 @@ export interface Booster {
   boosterName: string
   description: string
   imageSrc: string
-  imageCaption?: string
+  imageCaption: string
 }

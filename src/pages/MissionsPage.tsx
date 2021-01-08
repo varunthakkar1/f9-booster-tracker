@@ -4,7 +4,6 @@ import MissionCard from '../components/MissionCard'
 import { Mission } from '../model/Mission'
 
 const Container = styled.div`
-  font-family: 'Overpass', sans-serif;
   text-align: center;
   justify-content: space-evenly;
   display: flex;

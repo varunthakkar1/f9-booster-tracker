@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import GlobalStyle from './GlobalStyle'
 import BoosterPage from './pages/BoosterPage'
 import BoostersPage from './pages/BoostersPage'
 import MissionsPage from './pages/MissionsPage'
@@ -6,6 +7,7 @@ import MissionsPage from './pages/MissionsPage'
 function App() {
   return (
     <Router>
+      <GlobalStyle />
       <Link to="/" style={{ padding: '1rem 1rem' }}>
         Home
       </Link>

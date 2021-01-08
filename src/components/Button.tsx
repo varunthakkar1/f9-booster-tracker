@@ -4,11 +4,11 @@ import styled from 'styled-components'
 interface ButtonProps {
   type: string
   text: string
+  onClick?: () => void
 }
 
 const AddButtonContainer = styled.button`
-  font-family: 'Overpass', sans-serif;
-  font-weight: bolder;
+  font-weight: normal;
   font-size: 25px;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@ const AddButtonContainer = styled.button`
   border: 1px solid #2c51b8;
   background-color: white;
   cursor: pointer;
-  padding: 0.3rem 0.3rem;
+  padding: 0.8rem 0.3rem;
   margin: 0.3rem 0.3rem;
 
   @media screen and (min-width: 1440px) {
@@ -39,15 +39,25 @@ const DeleteButtonContainer = styled(AddButtonContainer)`
   border: none;
 `
 
-const Button: React.FC<ButtonProps> = ({ type, text }) => {
+const Button: React.FC<ButtonProps> = ({ type, text, onClick }) => {
   const renderButton = () => {
     switch (type) {
       case 'add':
-        return <AddButtonContainer>Add {text}</AddButtonContainer>
+        return (
+          <AddButtonContainer onClick={onClick}>Add {text}</AddButtonContainer>
+        )
       case 'edit':
-        return <EditButtonContainer>Edit {text}</EditButtonContainer>
+        return (
+          <EditButtonContainer onClick={onClick}>
+            Edit {text}
+          </EditButtonContainer>
+        )
       case 'delete':
-        return <DeleteButtonContainer>Delete {text}</DeleteButtonContainer>
+        return (
+          <DeleteButtonContainer onClick={onClick}>
+            Delete {text}
+          </DeleteButtonContainer>
+        )
     }
   }
 

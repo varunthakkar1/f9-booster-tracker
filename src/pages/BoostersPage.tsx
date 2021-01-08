@@ -5,7 +5,6 @@ import { Booster } from '../model/Booster'
 import SearchBar from '../components/SearchBar'
 
 const Container = styled.div`
-  font-family: 'Overpass', sans-serif;
   text-align: center;
   display: flex;
   align-items: center;
