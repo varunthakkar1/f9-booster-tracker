@@ -21,11 +21,8 @@ const BoosterTitle = styled.div`
   align-items: center;
   justify-content: center;
   font-weight: bolder;
-  font-size: 100px;
-
-  @media screen and (min-width: 1440px) {
-    font-size: 200px;
-  }
+  font-size: 10vw;
+  width: max-content;
 `
 
 const ButtonGroup = styled.div`
@@ -82,11 +79,12 @@ const BoosterPage: React.FC = () => {
   useEffect(() => {
     getBooster()
     getMissions()
+    console.log(booster)
   }, [])
 
   return (
     <Container>
-      <BoosterTitle>Booster {booster[0].boosterName}</BoosterTitle>
+      <BoosterTitle>Booster {booster.map((item: Booster, value: number) => (item.boosterName))}</BoosterTitle>
       <ButtonGroup>
         <Button type="add" text="Mission" />
         <Button type="edit" text="Booster" />
