@@ -18,6 +18,7 @@ const AddButtonContainer = styled.button`
   color: #2c51b8;
   border: 1px solid #2c51b8;
   background-color: white;
+  outline: none;
   cursor: pointer;
   padding: 0.8rem 0.3rem;
   margin: 0.3rem 0.3rem;
