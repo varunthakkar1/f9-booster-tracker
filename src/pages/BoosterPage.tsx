@@ -85,7 +85,6 @@ const BoosterPage: React.FC = () => {
   useEffect(() => {
     getBooster()
     getMissions()
-    console.log(booster)
   }, [])
 
   return (

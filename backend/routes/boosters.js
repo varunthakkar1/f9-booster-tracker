@@ -77,10 +77,10 @@ app.delete('/:id', async (req, res) => {
 app.put('/:id', async (req, res) => {
   try {
     const { id } = req.params
-    const { boosterName, decription, imageSrc, imageCaption } = req.body
+    const { boosterName, description, imageSrc, imageCaption } = req.body
     const updatedBooster = await pool.query(
       'UPDATE boosters SET booster_name = $1, description = $2, image_src = $3, image_caption = $4 WHERE booster_id = $5 RETURNING *',
-      [boosterName, decription, imageSrc, imageCaption, id]
+      [boosterName, description, imageSrc, imageCaption, id]
     )
     res.json(camelcaseKeys(updatedBooster))
   } catch (error) {
