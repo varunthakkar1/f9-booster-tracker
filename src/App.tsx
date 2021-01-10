@@ -3,6 +3,7 @@ import GlobalStyle from './GlobalStyle'
 import BoosterPage from './pages/BoosterPage'
 import BoostersPage from './pages/BoostersPage'
 import MissionsPage from './pages/MissionsPage'
+import MissionPage from './pages/MissionPage'
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route exact path="/missions">
           <MissionsPage />
+        </Route>
+        <Route exact path="/missions/:id">
+          <MissionPage />
         </Route>
       </Switch>
     </Router>

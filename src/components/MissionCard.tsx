@@ -81,7 +81,7 @@ const MissionCard: React.FC<MissionCardProps> = ({ mission }) => {
         <InfoText>{mission.missionStatus}</InfoText>
         <InfoText>{mission.landingStatus}</InfoText>
         <MoreLink
-          onClick={() => history.push('/boosters/' + mission.boosterId)}
+          onClick={() => history.push('/missions/' + mission.missionId)}
         >
           More
           <IconWrapper>

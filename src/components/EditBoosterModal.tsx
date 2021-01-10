@@ -80,7 +80,7 @@ const ModalButton = styled.div`
   cursor: pointer;
 `
 
-const ButtonGroup = styled.div`
+const ButtonGroupWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -157,10 +157,10 @@ const EditBoosterModal: React.FC<EditBoosterModalProps> = ({
           />
         </ModalForm>
         {completedRequest ? <StatusText>Updated Booster</StatusText> : null}
-        <ButtonGroup>
+        <ButtonGroupWrapper>
           <ModalButton onClick={(e) => updateBooster(e)}>Update</ModalButton>
           <ModalButton onClick={onClose}>Close</ModalButton>
-        </ButtonGroup>
+        </ButtonGroupWrapper>
       </ModalContainer>
     </Modal>
   )

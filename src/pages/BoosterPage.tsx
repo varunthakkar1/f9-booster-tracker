@@ -28,7 +28,7 @@ const BoosterTitle = styled.div`
   margin: 2rem 2rem;
 `
 
-const ButtonGroup = styled.div`
+const ButtonGroupWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,7 +40,7 @@ const ButtonGroup = styled.div`
   }
 `
 
-const MissionsList = styled.div`
+const MissionsListWrapper = styled.div`
   text-align: center;
   justify-content: space-evenly;
   display: flex;
@@ -66,9 +66,11 @@ const BoosterPage: React.FC = () => {
   const [booster, setBooster] = useState<Booster[]>([])
   const [missions, setMissions] = useState<Mission[]>([])
   const [editModalIsOpen, setEditModalIsOpen] = useState<boolean>(false)
-  const [addMissionModalIsOpen, setAddMissionModalIsOpen] = useState<boolean>(false)
+  const [addMissionModalIsOpen, setAddMissionModalIsOpen] = useState<boolean>(
+    false
+  )
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false)
-  let history = useHistory();
+  let history = useHistory()
   let { id } = useParams<BoosterRouteParams>()
 
   const toggleEditModal = () => {
@@ -105,17 +107,17 @@ const BoosterPage: React.FC = () => {
     }
   }
 
-  const deleteBooster = async (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const deleteBooster = async (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     try {
       const url = 'http://localhost:5001/boosters/' + id
-      const response = await fetch(url, 
-        {
-          method: 'DELETE',
-          headers: { 'Content-Type': 'application/json' },
-        })
+      const response = await fetch(url, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      })
       history.push('/boosters')
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error.message)
     }
   }
@@ -131,17 +133,23 @@ const BoosterPage: React.FC = () => {
         Booster{' '}
         {booster.map((item: Booster, value: number) => item.boosterName)}
       </BoosterTitle>
-      <ButtonGroup>
-        <Button type="add" text="Mission" onClick={toggleAddMissionModal}/>
+      <ButtonGroupWrapper>
+        <Button type="add" text="Mission" onClick={toggleAddMissionModal} />
         <Button type="edit" text="Booster" onClick={toggleEditModal} />
-        <Button type="delete" text="Booster" onClick={toggleDeleteConfirmationModal}/>
-      </ButtonGroup>
-      <MissionsList>
+        <Button
+          type="delete"
+          text="Booster"
+          onClick={toggleDeleteConfirmationModal}
+        />
+      </ButtonGroupWrapper>
+      <MissionsListWrapper>
         {missions.map((item: Mission, index: number) => (
           <MissionCard mission={item} key={index} />
         ))}
-        {missions.length === 0 ? <NoMissionsText>No Missions</NoMissionsText> : null}
-      </MissionsList>
+        {missions.length === 0 ? (
+          <NoMissionsText>No Missions</NoMissionsText>
+        ) : null}
+      </MissionsListWrapper>
       {editModalIsOpen ? (
         <EditBoosterModal
           booster={booster[0]}
