@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import { Booster } from '../../model/Booster'
 import Modal from 'react-modal'
-import { Mission } from '../model/Mission'
-import moment from 'moment'
-import { ModalButton } from './styled/ModalButton'
-import { ModalInput } from './styled/ModalInput'
-import { modalStyle } from '../styles/modalStyle'
+import styled from 'styled-components'
+import { ModalButton } from '../styled/ModalButton'
+import { ModalInput } from '../styled/ModalInput'
+import { modalStyle } from '../../styles/modalStyle'
 
-interface EditMissionModalProps {
-  mission: Mission
+interface AddMissionModalProps {
+  booster: Booster
   isOpen: boolean
   onClose: () => void
 }
@@ -56,7 +55,7 @@ const StatusText = styled.div`
   margin: 1rem 0rem;
 `
 
-const ButtonGroupWrapper = styled.div`
+const ButtonGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -64,42 +63,37 @@ const ButtonGroupWrapper = styled.div`
   margin-top: 1rem;
 `
 
-const EditMissionModal: React.FC<EditMissionModalProps> = ({
-  mission,
+const AddMissionModal: React.FC<AddMissionModalProps> = ({
+  booster,
   isOpen,
   onClose,
 }) => {
-  const [missionName, setMissionName] = useState<string>(mission.missionName)
-  const [launchDate, setLaunchDate] = useState<Date>(mission.launchDate)
-  const [missionStatus, setMissionStatus] = useState<string>(
-    mission.missionStatus
-  )
-  const [landingStatus, setLandingStatus] = useState<string>(
-    mission.landingStatus
-  )
-  const [missionPatchSrc, setMissionPatchSrc] = useState<string>(
-    mission.missionPatchSrc
-  )
+  const [missionName, setMissionName] = useState<string>()
+  const [launchDate, setLaunchDate] = useState<Date>()
+  const [missionStatus, setMissionStatus] = useState<string>()
+  const [landingStatus, setLandingStatus] = useState<string>()
+  const [missionPatchSrc, setMissionPatchSrc] = useState<string>()
   const [completedRequest, setCompletedRequest] = useState<boolean>(false)
 
-  const updateMission = async (e: any) => {
+  const addMission = async (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     e.preventDefault()
     try {
+      const boosterId = booster.boosterId
       const body = {
         missionName,
         launchDate,
         missionStatus,
         landingStatus,
         missionPatchSrc,
+        boosterId,
       }
-      const response = await fetch(
-        'http://localhost:5001/missions/' + mission.missionId,
-        {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        }
-      )
+      const response = await fetch('http://localhost:5001/missions/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
       response.status === 200
         ? setCompletedRequest(true)
         : setCompletedRequest(false)
@@ -111,42 +105,29 @@ const EditMissionModal: React.FC<EditMissionModalProps> = ({
   return (
     <Modal isOpen={isOpen} style={modalStyle} ariaHideApp={false}>
       <ModalContainer>
-        <ModalTitle>Edit Mission</ModalTitle>
+        <ModalTitle>Add Mission</ModalTitle>
         <ModalForm>
           <ModalFormLabel>Mission Name</ModalFormLabel>
-          <ModalInput
-            value={missionName}
-            onChange={(e) => setMissionName(e.target.value)}
-          />
+          <ModalInput onChange={(e) => setMissionName(e.target.value)} />
           <ModalFormLabel>Launch Date</ModalFormLabel>
           <ModalInput
-            value={moment(launchDate).format('LL')}
             onChange={(e) => setLaunchDate(new Date(e.target.value))}
           />
           <ModalFormLabel>Mission Status</ModalFormLabel>
-          <ModalInput
-            value={missionStatus}
-            onChange={(e) => setMissionStatus(e.target.value)}
-          />
+          <ModalInput onChange={(e) => setMissionStatus(e.target.value)} />
           <ModalFormLabel>Landing Status</ModalFormLabel>
-          <ModalInput
-            value={landingStatus}
-            onChange={(e) => setLandingStatus(e.target.value)}
-          />
+          <ModalInput onChange={(e) => setLandingStatus(e.target.value)} />
           <ModalFormLabel>Mission Patch Source</ModalFormLabel>
-          <ModalInput
-            value={missionPatchSrc}
-            onChange={(e) => setMissionPatchSrc(e.target.value)}
-          />
+          <ModalInput onChange={(e) => setMissionPatchSrc(e.target.value)} />
         </ModalForm>
         {completedRequest ? <StatusText>Added Mission</StatusText> : null}
-        <ButtonGroupWrapper>
-          <ModalButton onClick={(e) => updateMission(e)}>Edit</ModalButton>
+        <ButtonGroup>
+          <ModalButton onClick={(e) => addMission(e)}>Add</ModalButton>
           <ModalButton onClick={onClose}>Close</ModalButton>
-        </ButtonGroupWrapper>
+        </ButtonGroup>
       </ModalContainer>
     </Modal>
   )
 }
 
-export default EditMissionModal
+export default AddMissionModal

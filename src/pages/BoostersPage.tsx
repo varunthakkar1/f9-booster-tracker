@@ -4,6 +4,9 @@ import BoosterCard from '../components/BoosterCard'
 import { Booster } from '../model/Booster'
 import SearchBar from '../components/SearchBar'
 import { TitleText } from '../components/styled/TitleText'
+import { NoResultsText } from '../components/styled/NoResultsText'
+import Button from '../components/Button'
+import AddBoosterModal from '../components/modals/AddBoosterModal'
 
 const Container = styled.div`
   text-align: center;
@@ -24,19 +27,14 @@ const BoostersListWrapper = styled.div`
   width: 100%;
 `
 
-const NoBoostersText = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bolder;
-  font-size: 8vw;
-  width: max-content;
-  margin: 2rem 2rem;
-`
-
 const BoostersPage: React.FC = () => {
   const [boosters, setBoosters] = useState([])
-  const [searchBarInput, setSearchBarInput] = useState('')
+  const [searchBarInput, setSearchBarInput] = useState<string>('')
+  const [addModalIsOpen, setAddModalIsOpen] = useState<boolean>()
+
+  const toggleAddModal = () => {
+    setAddModalIsOpen(!addModalIsOpen)
+  }
 
   const getBoosters = async () => {
     try {
@@ -50,10 +48,9 @@ const BoostersPage: React.FC = () => {
 
   const getBoostersByName = async () => {
     try {
-      if (searchBarInput.trim() === "") {
+      if (searchBarInput.trim() === '') {
         getBoosters()
-      }
-      else {
+      } else {
         const response = await fetch(
           `http://localhost:5001/boosters/find/${searchBarInput}`
         )
@@ -77,18 +74,23 @@ const BoostersPage: React.FC = () => {
   return (
     <Container>
       <TitleText>Boosters</TitleText>
+      <Button type="add" text="Booster" onClick={toggleAddModal} />
       <SearchBar
         onSubmit={getBoostersByName}
         onChange={handleChange}
         inputValue={searchBarInput}
-        label="Search by booster name"
       />
       <BoostersListWrapper>
         {boosters.map((item: Booster, index: number) => (
           <BoosterCard booster={item} key={index} />
         ))}
       </BoostersListWrapper>
-      {boosters.length === 0 ? <NoBoostersText>No Boosters Found</NoBoostersText> : null}
+      {addModalIsOpen ? (
+        <AddBoosterModal isOpen={addModalIsOpen} onClose={toggleAddModal} />
+      ) : null}
+      {boosters.length === 0 ? (
+        <NoResultsText>No Boosters Found</NoResultsText>
+      ) : null}
     </Container>
   )
 }

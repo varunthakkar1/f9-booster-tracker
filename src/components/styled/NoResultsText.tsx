@@ -1,14 +1,15 @@
 import styled from 'styled-components'
 
-export const TitleText = styled.div`
+export const NoResultsText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bolder;
-  font-size: 67px;
+  font-size: 8vw;
+  width: max-content;
   margin: 2rem 2rem;
 
-  @media screen and (min-width: 650px) {
-    font-size: 10vw;
+  @media screen and (max-width: 650px) {
+    font-size: 50px;
   }
 `

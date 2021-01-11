@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import GlobalStyle from './GlobalStyle'
+import GlobalStyle from './styles/GlobalStyle'
 import BoosterPage from './pages/BoosterPage'
 import BoostersPage from './pages/BoostersPage'
 import MissionsPage from './pages/MissionsPage'

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Modal from 'react-modal'
-import { ModalButton } from './styled/ModalButton'
+import { ModalButton } from '../styled/ModalButton'
 
 const ModalContainer = styled.div`
   display: flex;

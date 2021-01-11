@@ -37,7 +37,10 @@ app.get('/:id', async (req, res) => {
 app.get('/find/:name', async (req, res) => {
   try {
     const { name } = req.params
-    const allBoosters = await pool.query(`SELECT * FROM boosters WHERE boosters.booster_name LIKE $1`, [name])
+    const allBoosters = await pool.query(
+      `SELECT * FROM boosters WHERE boosters.booster_name LIKE $1`,
+      [name]
+    )
     res.json(camelcaseKeys(allBoosters.rows))
   } catch (err) {
     console.error(err.message)

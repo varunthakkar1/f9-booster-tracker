@@ -4,18 +4,25 @@ import { BiSearchAlt } from 'react-icons/bi'
 
 const Container = styled.div`
   display: flex;
-  width: 100%;
+  justify-content: center;
+  width: 250px;
   margin-bottom: 2rem;
+  margin-top: 2rem;
+
+  @media screen and (min-width: 1440px) {
+    min-width: 300px;
+  }
 `
 
 const SearchBarForm = styled.form`
+  width: 100%;
   display: flex;
   justify-content: center;
-  width: 100%;
-  padding-right: 50px;
 `
 
 const SearchInput = styled.input`
+  display: flex;
+  width: 100%;
   height: 30px;
   font-weight: bolder;
   outline: none;
@@ -35,31 +42,20 @@ const IconWrapper = styled.div`
   color: white;
 `
 
-const SearchBarLabel = styled.label`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bolder;
-  margin-right: 10px;
-`
-
 interface SearchBarProps {
   onSubmit: () => void
   onChange: (e: React.FormEvent<HTMLInputElement>) => void
   inputValue: string
-  label: string
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   onSubmit,
   onChange,
   inputValue,
-  label,
 }) => {
   return (
     <Container>
       <SearchBarForm onSubmit={(e) => e.preventDefault()}>
-        <SearchBarLabel>{label}</SearchBarLabel>
         <SearchInput type="text" onChange={onChange} value={inputValue} />
         <SearchButton onClick={onSubmit}>
           <IconWrapper>

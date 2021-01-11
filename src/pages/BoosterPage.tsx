@@ -5,10 +5,11 @@ import { useHistory, useParams } from 'react-router-dom'
 import MissionCard from '../components/MissionCard'
 import { Mission } from '../model/Mission'
 import Button from '../components/Button'
-import EditBoosterModal from '../components/EditBoosterModal'
-import AddMissionModal from '../components/AddMissionModal'
-import DeleteConfirmationModal from '../components/DeleteConfirmationModal'
+import EditBoosterModal from '../components/modals/EditBoosterModal'
+import AddMissionModal from '../components/modals/AddMissionModal'
+import DeleteConfirmationModal from '../components/modals/DeleteConfirmationModal'
 import { TitleText } from '../components/styled/TitleText'
+import { NoResultsText } from '../components/styled/NoResultsText'
 
 const Container = styled.div`
   text-align: center;
@@ -37,16 +38,6 @@ const MissionsListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 80%;
-`
-
-const NoMissionsText = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bolder;
-  font-size: 8vw;
-  width: max-content;
-  margin: 2rem 2rem;
 `
 
 interface BoosterRouteParams {
@@ -138,7 +129,7 @@ const BoosterPage: React.FC = () => {
           <MissionCard mission={item} key={index} />
         ))}
         {missions.length === 0 ? (
-          <NoMissionsText>No Missions</NoMissionsText>
+          <NoResultsText>No Missions</NoResultsText>
         ) : null}
       </MissionsListWrapper>
       {editModalIsOpen ? (

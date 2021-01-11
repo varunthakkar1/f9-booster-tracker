@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import { Booster } from '../model/Booster'
-import Modal from 'react-modal'
 import styled from 'styled-components'
-import { ModalButton } from './styled/ModalButton'
-import { ModalInput } from './styled/ModalInput'
-import { modalStyle } from '../styles/modalStyle'
+import Modal from 'react-modal'
+import { modalStyle } from '../../styles/modalStyle'
+import { ModalInput } from '../styled/ModalInput'
+import { ModalButton } from '../styled/ModalButton'
 
-interface EditBoosterModalProps {
-  booster: Booster
+interface AddBoosterModalProps {
   isOpen: boolean
   onClose: () => void
 }
@@ -63,29 +61,25 @@ const ButtonGroupWrapper = styled.div`
   margin-top: 1rem;
 `
 
-const EditBoosterModal: React.FC<EditBoosterModalProps> = ({
-  booster,
+const AddBoosterModal: React.FC<AddBoosterModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const [boosterName, setBoosterName] = useState<string>(booster.boosterName)
-  const [description, setDescription] = useState<string>(booster.description)
-  const [imageSrc, setImageSrc] = useState<string>(booster.imageSrc)
-  const [imageCaption, setImageCaption] = useState<string>(booster.imageCaption)
+  const [boosterName, setBoosterName] = useState<string>()
+  const [description, setDescription] = useState<string>()
+  const [imageSrc, setImageSrc] = useState<string>()
+  const [imageCaption, setImageCaption] = useState<string>()
   const [completedRequest, setCompletedRequest] = useState<boolean>(false)
 
-  const updateBooster = async (e: any) => {
+  const addBooster = async (e: any) => {
     e.preventDefault()
     try {
       const body = { boosterName, description, imageSrc, imageCaption }
-      const response = await fetch(
-        'http://localhost:5001/boosters/' + booster.boosterId,
-        {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        }
-      )
+      const response = await fetch('http://localhost:5001/boosters/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
       response.status === 200
         ? setCompletedRequest(true)
         : setCompletedRequest(false)
@@ -97,32 +91,20 @@ const EditBoosterModal: React.FC<EditBoosterModalProps> = ({
   return (
     <Modal isOpen={isOpen} style={modalStyle} ariaHideApp={false}>
       <ModalContainer>
-        <ModalTitle>Edit Booster</ModalTitle>
+        <ModalTitle>Add Booster</ModalTitle>
         <ModalForm>
           <ModalFormLabel>Booster Name</ModalFormLabel>
-          <ModalInput
-            value={boosterName}
-            onChange={(e) => setBoosterName(e.target.value)}
-          />
+          <ModalInput onChange={(e) => setBoosterName(e.target.value)} />
           <ModalFormLabel>Description</ModalFormLabel>
-          <ModalInput
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <ModalInput onChange={(e) => setDescription(e.target.value)} />
           <ModalFormLabel>Image Source</ModalFormLabel>
-          <ModalInput
-            value={imageSrc}
-            onChange={(e) => setImageSrc(e.target.value)}
-          />
+          <ModalInput onChange={(e) => setImageSrc(e.target.value)} />
           <ModalFormLabel>Image Caption</ModalFormLabel>
-          <ModalInput
-            value={imageCaption}
-            onChange={(e) => setImageCaption(e.target.value)}
-          />
+          <ModalInput onChange={(e) => setImageCaption(e.target.value)} />
         </ModalForm>
-        {completedRequest ? <StatusText>Updated Booster</StatusText> : null}
+        {completedRequest ? <StatusText>Added Booster</StatusText> : null}
         <ButtonGroupWrapper>
-          <ModalButton onClick={(e) => updateBooster(e)}>Update</ModalButton>
+          <ModalButton onClick={(e) => addBooster(e)}>Add</ModalButton>
           <ModalButton onClick={onClose}>Close</ModalButton>
         </ButtonGroupWrapper>
       </ModalContainer>
@@ -130,4 +112,4 @@ const EditBoosterModal: React.FC<EditBoosterModalProps> = ({
   )
 }
 
-export default EditBoosterModal
+export default AddBoosterModal

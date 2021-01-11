@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ModalInput = styled.input`
   border-radius: 4px;

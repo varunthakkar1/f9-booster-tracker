@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import Button from '../components/Button'
-import DeleteConfirmationModal from '../components/DeleteConfirmationModal'
-import EditMissionModal from '../components/EditMissionModal'
+import DeleteConfirmationModal from '../components/modals/DeleteConfirmationModal'
+import EditMissionModal from '../components/modals/EditMissionModal'
 import MissionCard from '../components/MissionCard'
 import { TitleText } from '../components/styled/TitleText'
 import { Mission } from '../model/Mission'
@@ -41,7 +41,7 @@ const MissionPage: React.FC = () => {
   let { id } = useParams<MissionPageParams>()
 
   const toggleEditModal = () => {
-      setEditModalIsOpen(!editModalIsOpen)
+    setEditModalIsOpen(!editModalIsOpen)
   }
 
   const toggleDeleteConfirmationModal = () => {
@@ -92,7 +92,7 @@ const MissionPage: React.FC = () => {
     <Container>
       <TitleText>{mission?.missionName}</TitleText>
       <ButtonGroupWrapper>
-        <Button type="edit" text="Mission" onClick={toggleEditModal}/>
+        <Button type="edit" text="Mission" onClick={toggleEditModal} />
         <Button
           type="delete"
           text="Mission"
