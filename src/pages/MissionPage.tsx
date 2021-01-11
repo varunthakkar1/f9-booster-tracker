@@ -5,6 +5,7 @@ import Button from '../components/Button'
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal'
 import EditMissionModal from '../components/EditMissionModal'
 import MissionCard from '../components/MissionCard'
+import { TitleText } from '../components/styled/TitleText'
 import { Mission } from '../model/Mission'
 
 interface MissionPageParams {
@@ -18,16 +19,6 @@ const Container = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-`
-
-const MissionTitle = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bolder;
-  font-size: 10vw;
-  width: max-content;
-  margin: 2rem 2rem;
 `
 
 const ButtonGroupWrapper = styled.div`
@@ -50,7 +41,7 @@ const MissionPage: React.FC = () => {
   let { id } = useParams<MissionPageParams>()
 
   const toggleEditModal = () => {
-    setEditModalIsOpen(!editModalIsOpen)
+      setEditModalIsOpen(!editModalIsOpen)
   }
 
   const toggleDeleteConfirmationModal = () => {
@@ -99,9 +90,9 @@ const MissionPage: React.FC = () => {
 
   return (
     <Container>
-      <MissionTitle>{mission?.missionName}</MissionTitle>
+      <TitleText>{mission?.missionName}</TitleText>
       <ButtonGroupWrapper>
-        <Button type="edit" text="Mission" onClick={toggleEditModal} />
+        <Button type="edit" text="Mission" onClick={toggleEditModal}/>
         <Button
           type="delete"
           text="Mission"

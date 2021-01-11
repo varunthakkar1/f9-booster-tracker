@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import MissionCard from '../components/MissionCard'
+import { TitleText } from '../components/styled/TitleText'
 import { Mission } from '../model/Mission'
 
 const Container = styled.div`
@@ -11,6 +12,14 @@ const Container = styled.div`
   margin: none;
   padding: none;
   flex-wrap: wrap;
+`
+
+const MissionsListWrapper = styled.div`
+  text-align: center;
+  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
 `
 
 interface MissionsPageProps {}
@@ -34,9 +43,12 @@ const MissionsPage: React.FC<MissionsPageProps> = () => {
 
   return (
     <Container>
-      {missions.map((mission: Mission, index: number) => (
-        <MissionCard mission={mission} key={index} />
-      ))}
+      <TitleText>Missions</TitleText>
+      <MissionsListWrapper>
+        {missions.map((mission: Mission, index: number) => (
+          <MissionCard mission={mission} key={index} />
+        ))}
+      </MissionsListWrapper>
     </Container>
   )
 }

@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { Booster } from '../model/Booster'
 import Modal from 'react-modal'
 import styled from 'styled-components'
+import { ModalButton } from './styled/ModalButton'
+import { ModalInput } from './styled/ModalInput'
+import { modalStyle } from '../styles/modalStyle'
 
 interface AddMissionModalProps {
   booster: Booster
@@ -31,21 +34,7 @@ const ModalForm = styled.form`
   align-items: left;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
-`
-
-const ModalInput = styled.input`
-  border-radius: 4px;
-  width: 90%;
-  height: 2rem;
-  margin: 0rem 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid black;
-  outline: none;
-
-  &:focus {
-    border: 2.5px solid #2c51b8;
-  }
+  width: 95%;
 `
 
 const ModalFormLabel = styled.label`
@@ -64,20 +53,6 @@ const StatusText = styled.div`
   width: 90%;
   color: green;
   margin: 1rem 0rem;
-`
-
-const ModalButton = styled.div`
-  background-color: #2c51b8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30%;
-  border-radius: 4px;
-  height: 20px;
-  font-weight: bold;
-  color: white;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
 `
 
 const ButtonGroup = styled.div`
@@ -127,19 +102,8 @@ const AddMissionModal: React.FC<AddMissionModalProps> = ({
     }
   }
 
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  }
-
   return (
-    <Modal isOpen={isOpen} style={customStyles} ariaHideApp={false}>
+    <Modal isOpen={isOpen} style={modalStyle} ariaHideApp={false}>
       <ModalContainer>
         <ModalTitle>Add Mission</ModalTitle>
         <ModalForm>

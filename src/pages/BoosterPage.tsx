@@ -8,6 +8,7 @@ import Button from '../components/Button'
 import EditBoosterModal from '../components/EditBoosterModal'
 import AddMissionModal from '../components/AddMissionModal'
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal'
+import { TitleText } from '../components/styled/TitleText'
 
 const Container = styled.div`
   text-align: center;
@@ -16,16 +17,6 @@ const Container = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-`
-
-const BoosterTitle = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bolder;
-  font-size: 10vw;
-  width: max-content;
-  margin: 2rem 2rem;
 `
 
 const ButtonGroupWrapper = styled.div`
@@ -129,10 +120,10 @@ const BoosterPage: React.FC = () => {
 
   return (
     <Container>
-      <BoosterTitle>
+      <TitleText>
         Booster{' '}
         {booster.map((item: Booster, value: number) => item.boosterName)}
-      </BoosterTitle>
+      </TitleText>
       <ButtonGroupWrapper>
         <Button type="add" text="Mission" onClick={toggleAddMissionModal} />
         <Button type="edit" text="Booster" onClick={toggleEditModal} />

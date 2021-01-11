@@ -18,12 +18,15 @@ const SearchBarForm = styled.form`
 const SearchInput = styled.input`
   height: 30px;
   font-weight: bolder;
+  outline: none;
 `
 
 const SearchButton = styled.button`
   width: fit-content;
   background-color: #2c51b8;
   border: none;
+  outline: none;
+  cursor: pointer;
 `
 
 const IconWrapper = styled.div`

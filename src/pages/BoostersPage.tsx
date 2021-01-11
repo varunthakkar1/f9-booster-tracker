@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import BoosterCard from '../components/BoosterCard'
 import { Booster } from '../model/Booster'
 import SearchBar from '../components/SearchBar'
+import { TitleText } from '../components/styled/TitleText'
 
 const Container = styled.div`
   text-align: center;
@@ -23,36 +24,14 @@ const BoostersListWrapper = styled.div`
   width: 100%;
 `
 
-const TitleCard = styled.div`
+const NoBoostersText = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100vh;
-  margin-bottom: 2rem;
-  background-image: url('//live.staticflickr.com/4654/25254688767_1c6f195789_3k.jpg');
-  background-position: center;
-  background-size: 1920px 1440px;
-
-  @media screen and (min-width: 1650px) {
-    background-size: 1920px 1440px;
-    background-position: 0px 0px;
-  }
-
-  @media screen and (min-width: 1440px) and (max-width: 1650px) {
-    background-size: 1920px 1440px;
-    background-position: -250px -150px;
-  }
-
-  @media screen and (max-width: 715px) {
-    background-position: -200px 0px;
-  } ;
-`
-
-const TitleText = styled.div`
-  font-size: 120px;
+  justify-content: center;
   font-weight: bolder;
-  color: white;
+  font-size: 8vw;
+  width: max-content;
+  margin: 2rem 2rem;
 `
 
 const BoostersPage: React.FC = () => {
@@ -71,11 +50,16 @@ const BoostersPage: React.FC = () => {
 
   const getBoostersByName = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:5001/boosters/find/'${searchBarInput}'`
-      )
-      const jsonData = await response.json()
-      setBoosters(jsonData)
+      if (searchBarInput.trim() === "") {
+        getBoosters()
+      }
+      else {
+        const response = await fetch(
+          `http://localhost:5001/boosters/find/${searchBarInput}`
+        )
+        const jsonData = await response.json()
+        setBoosters(jsonData)
+      }
     } catch (error) {
       console.error(error.message)
     }
@@ -92,9 +76,7 @@ const BoostersPage: React.FC = () => {
 
   return (
     <Container>
-      <TitleCard>
-        <TitleText>Boosters</TitleText>
-      </TitleCard>
+      <TitleText>Boosters</TitleText>
       <SearchBar
         onSubmit={getBoostersByName}
         onChange={handleChange}
@@ -106,6 +88,7 @@ const BoostersPage: React.FC = () => {
           <BoosterCard booster={item} key={index} />
         ))}
       </BoostersListWrapper>
+      {boosters.length === 0 ? <NoBoostersText>No Boosters Found</NoBoostersText> : null}
     </Container>
   )
 }
