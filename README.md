@@ -8,10 +8,10 @@ First, the database must be created in PostgreSQL. Navigate to `/backend/databas
 
 Next, create a `.env` file in the root directory with the following environment variables:
 
--PG_USER=your_postgres_username
--PG_PASSWORD=your_postgres_password
--PG_PORT=postgres_port
--PG_DATABASE_NAME=database_name
+- PG_USER=your_postgres_username
+- PG_PASSWORD=your_postgres_password
+- PG_PORT=postgres_port
+- PG_DATABASE_NAME=database_name
 
 Once you have created the database and defined your environment variables, your backend will be able to make requests.
 
