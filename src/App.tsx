@@ -6,16 +6,10 @@ import MissionsPage from './pages/MissionsPage'
 import MissionPage from './pages/MissionPage'
 import HomePage from './pages/HomePage'
 import Navbar from './components/Navbar'
-import styled from 'styled-components'
-
-const StyledRouter = styled(Router)`
-  width: 100vw;
-  height: 100vh;
-`
 
 function App() {
   return (
-    <StyledRouter>
+    <Router>
       <GlobalStyle />
       <Navbar />
       <Switch>
@@ -35,7 +29,7 @@ function App() {
           <MissionPage />
         </Route>
       </Switch>
-    </StyledRouter>
+    </Router>
   )
 }
 

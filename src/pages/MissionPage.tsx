@@ -74,7 +74,7 @@ const MissionPage: React.FC = () => {
   ) => {
     try {
       const url = 'http://localhost:5001/missions/' + id
-      const response = await fetch(url, {
+      await fetch(url, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
       })
