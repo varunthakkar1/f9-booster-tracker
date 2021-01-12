@@ -38,7 +38,7 @@ const SlideoutLink = styled(Link)`
   font-size: 50px;
   text-decoration: none;
   margin: 2rem 0rem;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #2c51b8;
 `
 
 const HamburgerMenuIcon = styled(GiHamburgerMenu)`
