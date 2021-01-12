@@ -15,8 +15,9 @@ const FalconNineTitleCard = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 99vw;
+  width: 100vw;
   height: 100vh;
+  max-width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -65,16 +66,7 @@ const IconWrapper = styled.div`
   transform: translate(0%, 8%);
 `
 
-const QuoteCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 99vw;
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+const QuoteCard = styled(FalconNineTitleCard)`
   background-image: url('//live.staticflickr.com/5789/29343825184_a0dd2ee5b0_h.jpg');
 `
 

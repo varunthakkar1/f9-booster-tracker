@@ -5,19 +5,19 @@ import BoostersPage from './pages/BoostersPage'
 import MissionsPage from './pages/MissionsPage'
 import MissionPage from './pages/MissionPage'
 import HomePage from './pages/HomePage'
+import Navbar from './components/Navbar'
+import styled from 'styled-components'
+
+const StyledRouter = styled(Router)`
+  width: 100vw;
+  height: 100vh;
+`
 
 function App() {
   return (
-    <Router>
+    <StyledRouter>
       <GlobalStyle />
-      <Link to="/" style={{ padding: '1rem 1rem' }}>
-        Home
-      </Link>
-      <Link to="/missions" style={{ padding: '1rem 1rem' }}>
-        Missions
-      </Link>
-      <Link to="/boosters">Boosters</Link>
-
+      <Navbar />
       <Switch>
         <Route exact path="/">
           <HomePage />
@@ -35,7 +35,7 @@ function App() {
           <MissionPage />
         </Route>
       </Switch>
-    </Router>
+    </StyledRouter>
   )
 }
 
