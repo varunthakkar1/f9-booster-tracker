@@ -15,7 +15,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 375px;
+  min-width: 350px;
   margin: 10px 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -30,7 +30,7 @@ const MissionPatch = styled.img`
   display: flex;
   min-width: 65%;
   max-width: 85%;
-  max-height: 320px;
+  max-height: 280px;
   margin: 1rem;
 `
 

@@ -109,14 +109,11 @@ const HomePage: React.FC = () => {
           the stars...
         </QuoteText>
         <QuoteText>
-          and we're going to see what other planets are like...
-        </QuoteText>
-        <QuoteText>
           and the scope and scale of consciousness is expanded across many
           civilizations...
         </QuoteText>
-        <BoldQuoteText>this is a great future...</BoldQuoteText>
-        <BoldQuoteText>this is a wonderful thing.</BoldQuoteText>
+        <BoldQuoteText>This is a great future.</BoldQuoteText>
+        <BoldQuoteText>This is a wonderful thing.</BoldQuoteText>
         <BoldQuoteText>And that's what we should strive for."</BoldQuoteText>
         <QuoteText>- Elon Musk</QuoteText>
       </QuoteCard>
