@@ -67,7 +67,23 @@ const BoosterPage: React.FC = () => {
     setDeleteModalIsOpen(!deleteModalIsOpen)
   }
 
-  const getBooster = async () => {
+  const deleteBooster = async (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    try {
+      const url = 'http://localhost:5001/boosters/' + id
+      await fetch(url, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      history.push('/boosters')
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    const getBooster = async () => {
     try {
       const url = 'http://localhost:5001/boosters/' + id
       const response = await fetch(url)
@@ -89,22 +105,6 @@ const BoosterPage: React.FC = () => {
     }
   }
 
-  const deleteBooster = async (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    try {
-      const url = 'http://localhost:5001/boosters/' + id
-      await fetch(url, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-      })
-      history.push('/boosters')
-    } catch (error) {
-      console.error(error.message)
-    }
-  }
-
-  useEffect(() => {
     getBooster()
     getMissions()
   }, [])

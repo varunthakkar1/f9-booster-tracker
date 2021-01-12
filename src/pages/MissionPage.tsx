@@ -48,27 +48,6 @@ const MissionPage: React.FC = () => {
     setDeleteModalIsOpen(!deleteModalIsOpen)
   }
 
-  const getMission = async () => {
-    try {
-      const url = 'http://localhost:5001/missions/' + id
-      const response = await fetch(url)
-      const jsonData = await response.json()
-      const retrievedData = jsonData[0]
-      const missionObject: Mission = {
-        missionId: retrievedData['missionId'],
-        missionName: retrievedData['missionName'],
-        launchDate: retrievedData['launchDate'],
-        boosterId: retrievedData['boosterId'],
-        missionStatus: retrievedData['missionStatus'],
-        landingStatus: retrievedData['landingStatus'],
-        missionPatchSrc: retrievedData['missionPatchSrc'],
-      }
-      setMission(missionObject)
-    } catch (error) {
-      console.error(error.message)
-    }
-  }
-
   const deleteMission = async (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
@@ -85,6 +64,27 @@ const MissionPage: React.FC = () => {
   }
 
   useEffect(() => {
+    const getMission = async () => {
+      try {
+        const url = 'http://localhost:5001/missions/' + id
+        const response = await fetch(url)
+        const jsonData = await response.json()
+        const retrievedData = jsonData[0]
+        const missionObject: Mission = {
+          missionId: retrievedData['missionId'],
+          missionName: retrievedData['missionName'],
+          launchDate: retrievedData['launchDate'],
+          boosterId: retrievedData['boosterId'],
+          missionStatus: retrievedData['missionStatus'],
+          landingStatus: retrievedData['landingStatus'],
+          missionPatchSrc: retrievedData['missionPatchSrc'],
+        }
+        setMission(missionObject)
+      } catch (error) {
+        console.error(error.message)
+      }
+    }
+
     getMission()
   }, [])
 
