@@ -4,6 +4,7 @@ import BoosterPage from './pages/BoosterPage'
 import BoostersPage from './pages/BoostersPage'
 import MissionsPage from './pages/MissionsPage'
 import MissionPage from './pages/MissionPage'
+import HomePage from './pages/HomePage'
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
       <Link to="/boosters">Boosters</Link>
 
       <Switch>
-        <Route exact path="/"></Route>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
         <Route exact path="/boosters">
           <BoostersPage />
         </Route>

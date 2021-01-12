@@ -132,7 +132,7 @@ const DescriptionText = styled.div`
 `
 
 const IconWrapper = styled.div`
-  transform: translate(0%, 5%);
+  transform: translate(0%, 8%);
   margin-right: 5px;
 `
 
