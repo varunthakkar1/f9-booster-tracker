@@ -17,7 +17,7 @@ Once you have created the database and defined your environment variables, your 
 
 ## Running Backend
 
-Navigate to `/backend` and run `npm install` to install all of the dependencies. Then, run `node index` to start the server.
+Navigate to `/backend` and run `npm install` to install all of the dependencies. Then, run `node index` to start the server. Note that the backend runs on port 5001.
 
 ## Running Frontend
 
