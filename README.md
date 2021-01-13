@@ -1,6 +1,6 @@
 # Falcon 9 Booster Tracker
 
-This is a responsive web application built using PostgreSQL, Express, React and Node to log the boosters and missions of SpaceX's Falcon 9. This application allows users to search for, add, edit, and delete boosters and missions.
+This is a responsive web application built using PostgreSQL, Express, React and Node to manage the boosters and missions of SpaceX's Falcon 9. This application allows users to search for, add, edit, and delete boosters and missions.
 
 ## Creating Database
 
